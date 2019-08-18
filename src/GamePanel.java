@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel implements ActionListener, KeyListener{
+public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	final int MENU = 0;
 	final int GAME = 1;
@@ -19,13 +19,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	public Font titleFont;
 	public Font smallerFont;
 	Timer frameDraw;
+	Rocketship rocketship = new Rocketship(250, 700, 50, 50);
 
 	GamePanel(Font titleFont, Font smallerFont) {
 		titleFont = new Font("Arial", Font.PLAIN, 48);
 		this.titleFont = titleFont;
 		smallerFont = new Font("Arial", Font.PLAIN, 16);
 		this.smallerFont = smallerFont;
-		frameDraw = new Timer(1000/60, this);
+		frameDraw = new Timer(1000 / 60, this);
 		frameDraw.start();
 	}
 
@@ -55,6 +56,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	void drawGameState(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		rocketship.draw(g);
 	}
 
 	void drawEndState(Graphics g) {
@@ -82,11 +84,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(currentState == MENU) {
+		if (currentState == MENU) {
 			updateMenuState();
-		}else if(currentState == GAME) {
+		} else if (currentState == GAME) {
 			updateGameState();
-		}else if(currentState == END) {
+		} else if (currentState == END) {
 			updateEndState();
 		}
 		this.repaint();
@@ -95,36 +97,42 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
-		    if (currentState == END) {
-		        currentState = MENU;
-		    } else {
-		        currentState++;
-		    }
-		}  
-		if (e.getKeyCode()==KeyEvent.VK_UP) {
-		    System.out.println("UP");
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (currentState == END) {
+				currentState = MENU;
+			} else {
+				currentState++;
+			}
 		}
-		if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-		    System.out.println("DOWN");
-		}
-		if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-		    System.out.println("LEFT");
-		}
-		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-		    System.out.println("RIGHT");
+		if (currentState == GAME) {
+			if (e.getKeyCode() == KeyEvent.VK_UP && rocketship.y >= 10) {
+				System.out.println("UP");
+				rocketship.up();
+			}
+			if (e.getKeyCode() == KeyEvent.VK_DOWN && rocketship.y <= 720) {
+				System.out.println("DOWN");
+				rocketship.down();
+			}
+			if (e.getKeyCode() == KeyEvent.VK_LEFT && rocketship.x >= 10) {
+				System.out.println("LEFT");
+				rocketship.left();
+			}
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT && rocketship.x <= 440) {
+				System.out.println("RIGHT");
+				rocketship.right();
+			}
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

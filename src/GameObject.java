@@ -4,7 +4,7 @@ public class GameObject {
 	int y;
 	int width;
 	int height;
-	int speed =0;
+	int speed = 10;
 	boolean isActive = true;
 
 	GameObject(int x, int y, int width, int height) {
@@ -16,5 +16,21 @@ public class GameObject {
 	
 	void update(){
 		
+	}
+	
+	void up() {
+		y-=speed;
+	}
+	
+	void down() {
+		y+=speed;
+	}
+	
+	void left() {
+		x-=speed;
+	}
+	
+	void right() {
+		x+=speed;
 	}
 }
