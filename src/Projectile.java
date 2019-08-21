@@ -17,4 +17,8 @@ public class Projectile extends GameObject{
 		g.setColor(Color.RED);
         g.fillRect(x, y, width, height);
 	}
+	
+	int getY() {
+		return y;
+	}
 }
