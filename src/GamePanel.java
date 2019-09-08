@@ -78,6 +78,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
+		g.drawString(objectManager.getScore()+"", 500, 800);
 		g.drawImage(image, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
 		objectManager.draw(g);
 	}
@@ -136,7 +137,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				currentState = MENU;
 			} else {
 				currentState++;
-				if(currentState ==GAME) {
+				if(currentState == GAME) {
 					startGame();
 				}else {
 					alienSpawn.stop();

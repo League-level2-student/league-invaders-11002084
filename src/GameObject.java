@@ -5,7 +5,7 @@ public class GameObject {
 	int y;
 	int width;
 	int height;
-	int speed = 5;
+	int speed = 2;
 	boolean isActive = true;
 	
 	Rectangle collisionBox;
@@ -23,25 +23,25 @@ public class GameObject {
 	}
 
 	void up() {
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 5; i++) {
 			y -= speed;
 		}
 	}
 
 	void down() {
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 5; i++) {
 		y += speed;
 		}
 	}
 
 	void left() {
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 5; i++) {
 		x -= speed;
 		}
 	}
 
 	void right() {
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 5; i++) {
 		x += speed;
 		}
 	}
