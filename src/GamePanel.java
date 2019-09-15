@@ -80,6 +80,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void drawGameState(Graphics g) {
 		g.drawString(objectManager.getScore()+"", 500, 800);
 		g.drawImage(image, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
+		g.setFont(titleFont);
+		g.drawString("Score: "+objectManager.getScore(), 250, 775);
 		objectManager.draw(g);
 	}
 
@@ -135,6 +137,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == END) {
 				currentState = MENU;
+				Rocketship rocketship = new Rocketship(250, 700, 50, 50);
+				this.rocketship=rocketship;
+				ObjectManager objectManager = new ObjectManager(this.rocketship);
+				this.objectManager=objectManager;
 			} else {
 				currentState++;
 				if(currentState == GAME) {

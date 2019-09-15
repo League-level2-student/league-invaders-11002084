@@ -26,6 +26,14 @@ public class ObjectManager implements ActionListener {
 	void addAlien() {
 		alien.add(new Alien(random.nextInt(LeagueInvaders.WIDTH), 0, 50, 50));
 	}
+	
+	void checkInvasion() {
+		for(int i=0; i<alien.size(); i++) {
+			if(alien.get(i).y==800 && score>0) {
+				score--;
+			}
+		}
+	}
 
 	void checkCollision() {
 		for (int i = 0; i < alien.size(); i++) {
@@ -60,6 +68,7 @@ public class ObjectManager implements ActionListener {
 
 		rocketship.update();
 		checkCollision();
+		checkInvasion();
 		purgeObjects();
 	}
 
